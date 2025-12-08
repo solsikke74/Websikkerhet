@@ -1,0 +1,98 @@
+h1 {
+color:#4A5759;
+font-size: 3.0em;
+}
+
+h2{
+color:#4A5759;
+font-size: 1.5em;
+}
+
+h4 {
+color:#4A5759;
+font-size: 1.0em;
+}
+
+
+body { background: #dedbd2; /* Lysegrå bakgrunnsfarge */
+       font-family: Verdana, Geneva, Tahoma, sans-serif;
+       font-size: 100%;
+     }
+
+header{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color:#b0c4b1;
+    height: 20vh;
+    color:#4a5759;
+    font-size: 3.0em;
+    text-shadow: 0px 2px #dedbd2;
+    border-radius: 10px 10px 0 0 ;
+    }
+
+a:link {
+  text-decoration: none;
+  color: #4a5759
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:active {
+  text-decoration: underline;
+}
+
+.row::after { /*   */
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Style the topnav */
+ul.topnav {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background-color: #b0c4b1;
+}
+
+/* Style links in topnav */
+ul.topnav li a {
+  display: block;
+  color: #4a5759;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change color on hover */
+ul.topnav li a:hover {
+  background-color: #8fa090;
+  color: 424874;
+}
+
+
+.main-content {
+    flex: 1; /* Tar opp all ledig plass mellom header og footer */
+    padding: 20px;
+}
+
+
+.footer{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  background-color:#b0c4b1;
+  height: 15vh;
+  color:#4a5759;
+  font-size: 2.0em;
+  text-shadow: 0px 3px #dedbd2;
+  max-width:80%;
+  margin: 0 auto;
+}
+
+.footer:hover { /* fargen som vises når du holder musen over*/
+  background-color: #8fa090;
+}
