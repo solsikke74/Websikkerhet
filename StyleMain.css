@@ -20,11 +20,23 @@ h1 {
     color: #022b3a;
     margin-top: 20px;
     margin-bottom: 24px;
+    margin-left: 10px;
 }
 p {
     color: #1f7a8c;
     line-height: 1.6;
     margin-bottom: 16px;
+    margin-left: 10px;
+}
+
+a:link {
+  color: #022b3a;
+  background-color: transparent;
+}
+
+a:visited {
+  color: #022b3a;
+  background-color: transparent;
 }
 
 body {
@@ -50,11 +62,11 @@ ul.topnav li a {
   display: block;
   color: #e1e5f2;
   text-align: center;
-  padding: 20px 14px;
+  padding: 20px 40px;
   text-decoration: none;
   border: #bfdbf7 solid 1px; 
   border-radius: 6px;   /* valgfritt – penere */ 
-  margin: 20px;      
+  margin: 30px;      
 }
 
 ul.topnav li a:hover:not(.active) {background-color: #1f7a8c;}
