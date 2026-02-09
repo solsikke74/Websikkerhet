@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Gjør designet responsivt etter størrelsen-->
 <!-- width=device-width - gjør at designet tilpasses skjermbredden -->
  <!-- initial-scale=1.0 - setter utgangspunkt for zooming når siden først lastes i nettleseren -->
- <link rel="stylesheet" href="StyleMain.css">
+ <link rel="stylesheet" href="Grid.css">
 </head>
 <body>
 
@@ -25,7 +25,40 @@
 
 <main>
 <h1>Del 1</h1>
+<p>Her har jeg brukt <a href="https://www.w3schools.com/howto/howto_css_product_card.asp">produktkort </a> for utseende, og <a href="https://www.w3schools.com/css/css_grid_item.asp"> grid </a> for å plassere kortene i en fin layout. </p>
 <p>Her er innholdet for del 1 av webområdet mitt for websikkerhet.</p>
+
+<div class="grid-container">
+  <div class="grid-item">
+        <div class="card">
+        <img src="Images/mitre.png" alt="informasjon om mitre" style="width:100%">
+        <h1>Mitre</h1>
+        <p class="price">Test</p>
+        <p>Some text about the jeans. Super slim and comfy lorem ipsum lorem jeansum. Lorem jeamsun denim lorem jeansum.</p>
+        <p><button>Les mer her</button></p>
+        </div>
+        <div class="card">
+        <img src="Images/mitre.png" alt="informasjon om mitre" style="width:100%">
+        <h1>Mitre</h1>
+        <p class="price">Test</p>
+        <p>Some text about the jeans. Super slim and comfy lorem ipsum lorem jeansum. Lorem jeamsun denim lorem jeansum.</p>
+        <p><button>Les mer her</button></p>
+        </div>
+        <div class="card">
+        <img src="Images/mitre.png" alt="informasjon om mitre" style="width:100%">
+        <h1>Mitre</h1>
+        <p class="price">Test</p>
+        <p>Some text about the jeans. Super slim and comfy lorem ipsum lorem jeansum. Lorem jeamsun denim lorem jeansum.</p>
+        <p><button>Les mer her</button></p>
+        </div>
+    </div>
+</div>
+
+
+    <div class="grid-container">
+  <div class="grid-item">
+    <h2>OWASP</h2>
+    <p><a href="https://owasp.org/www-project-top-ten/">OWASP </a> - Open Web Application Security Project (OWASP) er en ideell organisasjon som fokuserer på å forbedre sikkerheten til webapplikasjoner. OWASP er kjent for sin liste over de ti mest kritiske sikkerhetsrisikoene for webapplikasjoner, kjent som OWASP Top Ten. Denne listen gir utviklere og sikkerhetsprofesjonelle innsikt i de vanligste sårbarhetene som kan utnyttes av angripere, og gir retningslinjer for hvordan man kan beskytte applikasjoner mot disse truslene.
 <p><a href="https://attack.mitre.org/">Mitre </a> - ATT&CK er en kunnskapsbase som inneholder informasjon om ulike teknikker og taktikker som angripere bruker for å kompromittere systemer og nettverk. Det er et verktøy som brukes av sikkerhetsforskere, analytikere og forsvarere for å forstå trusler og utvikle strategier for å beskytte seg mot dem. Mitre - ATT&CK gir en strukturert måte å kategorisere og beskrive angrepsteknikker, og det kan hjelpe organisasjoner med å identifisere sårbarheter i sine systemer og implementere effektive sikkerhetstiltak.
 </p>
 
