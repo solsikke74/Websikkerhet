@@ -115,6 +115,21 @@ ul.linkcard li a:hover:not(.active) {background-color: #1f7a8c;}
   font-size: 22px;
 }
 
+div.flex-container {
+  display: flex;
+  flex-direction: row;
+}
+
+div.flex-container > div {
+  margin: 10px;
+}
+
+/* Use media query and show the flex items vertically if screen width is less than 600px */
+@media screen and (max-width:600px) {
+  div.flex-container {
+    flex-direction: column;
+  }
+}
 
   footer{
   width: min(600px, 90%); 
