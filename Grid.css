@@ -1,0 +1,137 @@
+ /*Fargekoder
+ color: #022b3a;
+ color: #1f7a8c;
+ color: #bfdbf7;
+ color: #e1e5f2;
+ color: #ffffff; 
+ Gentle Sea Breeze
+ https://coolors.co/palette/022b3a-1f7a8c-bfdbf7-e1e5f2-ffffff
+  */
+
+*, *::before, *::after 
+{ 
+  box-sizing: border-box;
+}
+/* a CSS property value that forces an element's specified width and height to include its 
+content, padding, and border. It prevents elements from expanding unexpectedly when padding or borders are added, 
+making layout calculations much easier and more intuitive compared to the default content-box. */
+
+h1 {
+    color: #022b3a;
+    margin-top: 20px;
+    margin-bottom: 24px;
+    margin-left: 10px;
+}
+p {
+    color: #1f7a8c;
+    line-height: 1.6;
+    margin-bottom: 16px;
+    margin-left: 10px;
+}
+
+a:link {
+  color: #022b3a;
+  background-color: transparent;
+}
+
+a:visited {
+  color: #022b3a;
+  background-color: transparent;
+}
+
+body {
+    background-color:#bfdbf7;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+ ul.topnav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; 
+  background-color: #022b3a;
+}
+
+ul.topnav li{
+  float: left;
+  }
+
+ul.topnav li a {
+  display: block;
+  color: #e1e5f2;
+  text-align: center;
+  padding: 20px 40px;
+  text-decoration: none;
+  border: #bfdbf7 solid 1px; 
+  border-radius: 6px;   /* valgfritt – penere */ 
+  margin: 30px;      
+}
+
+ul.topnav li a:hover:not(.active) {background-color: #1f7a8c;}
+
+
+@media screen and (max-width: 600px) {
+    ul.topnav li.right,
+    ul.topnav li {float: none;}
+}
+
+
+ main{
+    background-color: #bfdbf7;
+    color: #1f7a8c;
+ }
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
+
+.price {
+  color: grey;
+  font-size: 22px;
+}
+
+.card button {
+  border: none;
+  outline: 0;
+  padding: 12px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+.card button:hover {
+  opacity: 0.7;
+}
+
+
+.grid-container {
+  display: grid;            
+    grid-template-columns: auto auto auto;
+    padding: 10px;
+    gap: 10px;
+}
+
+
+  footer{
+  width: min(600px, 90%); 
+  background-color: #022b3a;  
+  color: #e1e5f2;
+  min-height: 80px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 14px;
+  align-items: center;
+  border-radius: 10px;
+  margin:24px auto;
+ }
+
