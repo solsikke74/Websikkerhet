@@ -82,6 +82,10 @@ ul.topnav li a:hover:not(.active) {background-color: #1f7a8c;}
     color: #1f7a8c;
  }
 
+ img {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+ }
+
 /* Style the tab */
 .tab {
   overflow: hidden;
@@ -105,7 +109,7 @@ ul.topnav li a:hover:not(.active) {background-color: #1f7a8c;}
 
 /* Change background color of buttons on hover */
 .tab button:hover {
-  background-color: #bfdbf7;
+  background-color: #809ab2;
 }
 
 /* Create an active/current tablink class */
@@ -121,6 +125,11 @@ ul.topnav li a:hover:not(.active) {background-color: #1f7a8c;}
   border-top: none;
 }
 
+.footer a { 
+  color: #e1e5f2;
+  text-decoration: none;
+  font-size: 18px;
+}
 
   footer{
   width: min(600px, 90%); 

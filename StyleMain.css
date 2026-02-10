@@ -83,7 +83,11 @@ ul.topnav li a:hover:not(.active) {background-color: #1f7a8c;}
     color: #1f7a8c;
  }
 
- 
+ .footer a { 
+  color: #e1e5f2;
+  text-decoration: none;
+  font-size: 18px;
+}
 
   footer{
   width: min(600px, 90%); 
