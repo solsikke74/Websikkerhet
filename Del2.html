@@ -18,36 +18,48 @@
     <li><a href="Del1.html">Del 2</a></li>
     <li><a href="#about">Del 3</a></li>
     <li><a href="#about">Del 4</a></li>
-    <li><a href="#about">Del 5</a></li>
   </ul>
 </topnav>
 
 
 <main>
 <h1>Del 2</h1>
+<p>Her tester jeg ut <a href="https://www.w3schools.com/howto/howto_js_tabs.asp">tabs</a>.</p>
 
 <!-- Tab links -->
 <div class="tab">
-  <button class="tablinks" onclick="openCity(event, 'London')">London</button>
-  <button class="tablinks" onclick="openCity(event, 'Paris')">Paris</button>
-  <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
+  <button class="tablinks" onclick="openCity(event, 'Command')">Command</button>
+  <button class="tablinks" onclick="openCity(event, 'SQL')">SQL</button>
+  <button class="tablinks" onclick="openCity(event, 'XPath')">XPath</button>
+  <button class="tablinks" onclick="openCity(event, 'XSS')">XSS</button>
 </div>
 
 <!-- Tab content -->
-<div id="London" class="tabcontent">
-  <h3>London</h3>
-  <p>London is the capital city of England.</p>
+<div id="Command" class="tabcontent">
+  <h3>Command injections</h3>
+  <p>Data legges inn i en applikasjon, og programmet tolker dataene som en kommando.</p>
+  <p>For eksempel hvis du jobber opp mot SQL, shell (cmd.exe, bash), LDAP, XPath og andre</p>
+  <p>CWE har kategorisert injections med nummer 74. </p>
+  <a href="https://cwe.mitre.org/data/definitions/74.html">CWE-74</a>
+  <p>På nettsiden til cwe kan du lengst nede se kodeeksempler og hva som er feil med koden. </p>
+ <p><img src="Images/CWE74.png" alt="Command injection" width="500" height="300"></p> 
 </div>
 
-<div id="Paris" class="tabcontent">
-  <h3>Paris</h3>
-  <p>Paris is the capital of France.</p>
+<div id="SQL" class="tabcontent">
+  <h3>SQL injections</h3>
+  <p></p>
 </div>
 
-<div id="Tokyo" class="tabcontent">
-  <h3>Tokyo</h3>
+<div id="XPath" class="tabcontent">
+  <h3>XPath injections</h3>
   <p>Tokyo is the capital of Japan.</p>
 </div>
+
+<div id="XSS" class="tabcontent">
+  <h3>Cross-site scripting (XSS) </h3>
+  <p>Tokyo is the capital of Japan.</p>
+</div>
+
 </main>
 
 <script src="Tabs.js"></script>

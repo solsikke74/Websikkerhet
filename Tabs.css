@@ -100,11 +100,12 @@ ul.topnav li a:hover:not(.active) {background-color: #1f7a8c;}
   cursor: pointer;
   padding: 14px 16px;
   transition: 0.3s;
+  font-size: 20px;
 }
 
 /* Change background color of buttons on hover */
 .tab button:hover {
-  background-color: #1f7a8c;
+  background-color: #bfdbf7;
 }
 
 /* Create an active/current tablink class */
