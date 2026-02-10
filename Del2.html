@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Gjør designet responsivt etter størrelsen-->
 <!-- width=device-width - gjør at designet tilpasses skjermbredden -->
  <!-- initial-scale=1.0 - setter utgangspunkt for zooming når siden først lastes i nettleseren -->
- <link rel="stylesheet" href="StyleMain.css">
+ <link rel="stylesheet" href="Tabs.css">
 </head>
 <body>
 
@@ -15,7 +15,7 @@
 <ul class="topnav">
     <li><a href="index.html">Hjem</a></li>
     <li><a href="Del1.html">Del 1</a></li>
-    <li><a href="Del2.html">Del 2</a></li>
+    <li><a href="Del1.html">Del 2</a></li>
     <li><a href="#about">Del 3</a></li>
     <li><a href="#about">Del 4</a></li>
     <li><a href="#about">Del 5</a></li>
@@ -24,13 +24,33 @@
 
 
 <main>
-<h1>Hei og velkommen til webområdet mitt for websikkerhet. </h1>
+<h1>Del 2</h1>
 
-<p>Stylingen på denne siden er responsivt, slik at det endrer seg i forhold til skjermstørrelsen. </p>
-<p>Responsiv toppnavigering kan du lese mer om på  <a href="https://www.w3schools.com/css/tryit.asp?filename=trycss_navbar_horizontal_responsive"> w3schools</a>. </p>
-<p>Responsive <a href="https://www.w3schools.com/html/html_responsive.asp">bilder</a>. </p>
+<!-- Tab links -->
+<div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'London')">London</button>
+  <button class="tablinks" onclick="openCity(event, 'Paris')">Paris</button>
+  <button class="tablinks" onclick="openCity(event, 'Tokyo')">Tokyo</button>
+</div>
+
+<!-- Tab content -->
+<div id="London" class="tabcontent">
+  <h3>London</h3>
+  <p>London is the capital city of England.</p>
+</div>
+
+<div id="Paris" class="tabcontent">
+  <h3>Paris</h3>
+  <p>Paris is the capital of France.</p>
+</div>
+
+<div id="Tokyo" class="tabcontent">
+  <h3>Tokyo</h3>
+  <p>Tokyo is the capital of Japan.</p>
+</div>
 </main>
 
+<script src="Tabs.js"></script>
 
 <footer>
     Footer
