@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Gjør designet responsivt etter størrelsen-->
 <!-- width=device-width - gjør at designet tilpasses skjermbredden -->
  <!-- initial-scale=1.0 - setter utgangspunkt for zooming når siden først lastes i nettleseren -->
- <link rel="stylesheet" href="Tabs.css">
+ <link rel="stylesheet" href="testtabs.css">
 </head>
 <body>
 
@@ -14,7 +14,7 @@
 <ul class="topnav">
     <li><a href="index.html">Hjem</a></li>
     <li><a href="Del1.html">Del 1</a></li>
-    <li><a href="Del1.html">Del 2</a></li>
+    <li><a href="Del2.html">Del 2</a></li>
     <li><a href="#about">Del 3</a></li>
     <li><a href="#about">Del 4</a></li>
 </ul>
@@ -48,6 +48,74 @@
   <p>Et angrep hvor en angriper injiserer skadelig SQL-kode i et spørringsspråk som brukes av applikasjonen.</p>
   <p>Dette er en underkategori til Command injections, der SQL-injeksjoner har ID 89, og er "child" til 74.</p>
   <p>Du kan lære mer om <a href="https://www.youtube.com/watch?v=1nJgupaUPEQ&list=PLuyTk2_mYISLaZC4fVqDuW_hOk0dd5rlf&index=1">SQL-injeksjoner.</a></p>
+  <div class="note-section" style="font-family: sans-serif; line-height: 1.6; max-width: 800px; border: 1px solid #ccc; padding: 20px; border-radius: 8px;">
+  <h3 style="color: #2c3e50;">SQL injections</h3>
+  <p>Et angrep hvor en angriper injiserer skadelig SQL-kode i et spørringsspråk som brukes av applikasjonen [1]. Dette skjer når brukerstyrte data inkluderes i SQL-spørringer på en usikker måte, slik at angriperen kan bryte ut av datakonteksten og endre selve spørringslogikken [2, 3].</p>
+    <div class="note-section" style="font-family: sans-serif; line-height: 1.6; max-width: 800px; border: 1px solid #ccc; padding: 20px; border-radius: 8px;">
+  <h3 style="color: #2c3e50;">Kategorisering av SQL-injeksjoner</h3>
+  <p>SQL-injeksjoner deles vanligvis inn i tre hovedkategorier basert på hvordan angriperen mottar data fra serveren.</p>
+
+  <h4 style="color: #2980b9;">1. In-band SQL-injeksjon (Classic)</h4>
+  <p>Dette er den vanligste og mest direkte formen for angrep, der angriperen bruker <strong>samme kommunikasjonskanal</strong> til både å utføre angrepet og hente ut resultatene [1].</p>
+  <ul>
+    <li><strong>UNION-basert:</strong> Bruker <code>UNION</code>-operatøren for å kombinere resultater fra den originale spørringen med data fra andre tabeller [1]. Dette er ofte den raskeste metoden for datatrekking [1].</li>
+    <li><strong>Feilbasert (Error-based):</strong> Utnytter detaljerte feilmeldinger fra databasen (f.eks. ODBC-feil) for å hente ut informasjon om databasens struktur og innhold [2, 3].</li>
+  </ul>
+
+  <h4 style="color: #e67e22;">2. Inferential SQL-injeksjon (Blind SQLi)</h4>
+  <p>Dette brukes når applikasjonen ikke returnerer data eller detaljerte feilmeldinger direkte i svaret [4]. Angriperen må i stedet <strong>utlede (infer)</strong> informasjon bit for bit ved å observere applikasjonens oppførsel [4, 5].</p>
+  <ul>
+    <li><strong>Betingede responser (Boolean-based):</strong> Angriperen sender logiske spørsmål (sant/usant) og ser om innholdet på siden endres eller om det oppstår en generisk feil [4, 6].</li>
+    <li><strong>Tidsforsinkelser (Time-delay):</strong> Angriperen tvinger databasen til å vente et bestemt antall sekunder før den svarer dersom en betingelse er sann [7]. Dette bekrefter sårbarheten selv uten synlige endringer i innholdet [5].</li>
+  </ul>
+
+  <h4 style="color: #c0392b;">3. Out-of-band SQL-injeksjon</h4>
+  <p>Dette er en avansert teknikk som brukes når man ikke kan hente data via selve webapplikasjonen [8]. Angrepet utnytter databasens evne til å opprette <strong>eksterne nettverksforbindelser</strong> [8].</p>
+  <ul>
+    <li><strong>Nettverkstrafikk:</strong> Databasen kan instrueres til å sende data via protokoller som <strong>HTTP, DNS eller SMB</strong> til en server angriperen kontrollerer [8-10].</li>
+    <li><strong>Eksempler:</strong> Bruk av <code>UTL_HTTP</code> eller <code>UTL_INADDR</code> i Oracle for å sende forespørsler ut av nettverket [8, 9].</li>
+  </ul>
+
+  <h4 style="color: #27ae60;">Sikringsanbefaling:</h4>
+  <p>Uansett type injeksjon er det primære forsvaret å bruke <strong>parameteriserte spørringer</strong> (prepared statements) [11, 12]. Dette skiller spørringens struktur fra brukerdataene, slik at dataene alltid tolkes som tekst og aldri som kode [13, 14].</p>
+</div>
+  
+  <h4 style="color: #e67e22;">Eksempler på angrepsvektorer:</h4>
+  
+  <div style="background: #f9f9f9; border-left: 5px solid #e67e22; padding: 10px; margin-bottom: 15px;">
+    <strong>1. Omgåelse av innlogging (Bypass)</strong><br>
+    Ved å bruke kommentartegn eller logiske sannheter kan man lure databasen til å gi tilgang uten passord.<br>
+    <code>Brukernavn: admin'--</code> (Ignorerer passordsjekken) [4].<br>
+    <code>Brukernavn: ' OR 1=1--</code> (Logger ofte inn som første bruker i tabellen) [5].
+  </div>
+
+  <div style="background: #f9f9f9; border-left: 5px solid #e67e22; padding: 10px; margin-bottom: 15px;">
+    <strong>2. Hente ut data (UNION-basert)</strong><br>
+    Brukt for å kombinere den originale spørringen med data fra andre tabeller.<br>
+    <code>' UNION SELECT @@version, NULL, NULL--</code> (Henter databaseversjon på MS-SQL/MySQL) [6].<br>
+    <code>' UNION SELECT table_name, column_name, NULL FROM information_schema.columns--</code> (Kartlegger databasestrukturen) [7].
+  </div>
+
+  <div style="background: #f9f9f9; border-left: 5px solid #e67e22; padding: 10px; margin-bottom: 15px;">
+    <strong>3. Blind SQL-injeksjon (Inference/Time-delay)</strong><br>
+    Når applikasjonen ikke viser feilmeldinger, kan man bruke tidsforsinkelser for å bekrefte sårbarheter.<br>
+    <code>'; waitfor delay '0:30:0'--</code> (Tvinger en MS-SQL database til å vente i 30 sekunder) [8].
+  </div>
+
+  <div style="background: #f9f9f9; border-left: 5px solid #e67e22; padding: 10px; margin-bottom: 15px;">
+    <strong>4. Systemtilgang (OS Commands)</strong><br>
+    I visse konfigurasjoner kan man kjøre kommandoer direkte på serverens operativsystem.<br>
+    <code>'; exec master..xp_cmdshell 'dir'--</code> (Lister filer på serveren via MS-SQL) [9].
+  </div>
+
+  <h4 style="color: #27ae60;">Sikringstiltak:</h4>
+  <p>For å eliminere SQL-injeksjoner bør man alltid bruke <strong>parameteriserte spørringer</strong> (prepared statements) [10]. Dette skiller spørringens struktur fra dataene, slik at brukerinput aldri kan tolkes som kode [11]. I tillegg bør databasekontoen ha <strong>lavest mulige privilegier</strong> for å begrense skadeomfanget ved et angrep [12].</p>
+
+  <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+  
+  <p style="font-size: 0.9em; color: #7f8c8d;">Dette er en underkategori til Command injections, der SQL-injeksjoner har ID 89, og er "child" til 74.</p>
+  <p>Du kan lære mer om <a href="https://www.youtube.com/watch?v=1nJgupaUPEQ&list=PLuyTk2_mYISLaZC4fVqDuW_hOk0dd5rlf&index=1" style="color: #3498db; text-decoration: none;">SQL-injeksjoner på YouTube.</a></p>
+</div>
 </div>
 
 <div id="XPath" class="tabcontent">
@@ -57,182 +125,79 @@
  </div>
 
 <div id="XSS" class="tabcontent">
-  <h3>Cross-site scripting (XSS) </h3>
-    <p>Cross-Site Scripting (XSS)er en av de vanligste sårbarhetene i webapplikasjoner og oppstår når en applikasjon tar brukerstyrte data og sender dem til en brukers nettleser uten tilstrekkelig validering eller koding. Dette gjør at en angriper kan kjøre vilkårlig JavaScript i offerets nettleser.
-    <p>Dette er en underkategori til Command injections, der XSS har ID 79, og er "child" til 74.</p>
-    <img id="myImg" src="Images/CWE79.png" alt="Bildet viser XSS, der klarer å injisere kode i en nettside." style="width:100%;max-width:300px">
-      <!-- The Modal -->
-        <div id="myModal" class="modal">
-        <span class="close">&times;</span>
-        <img class="modal-content" id="img01">
-        <div id="caption"></div>
-      </div>
-  <h2>Her er en oversikt over de ulike typene XSS og hvordan du kan sikre nettsidene dine mot dem:</h2>
-  <h3>Varianter av XSS</h3>
-  <h4>Reflektert XSS </h4>(First-order)
-    <p>Oppstår når skadelig script fra et HTTP-forespørsel blir "reflektert" direkte tilbake i svaret fra serveren, for eksempel i en feilmelding.</p>
-  <h4>Lagret XSS</h4> (Second-order)
-    <p>Oppstår når data fra en bruker lagres i applikasjonen (f.eks. i en database) og senere vises til andre brukere uten sikring. Dette anses som mer alvorlig fordi det rammer alle som besøker den aktuelle siden.</p>
-  <h4>DOM-basert XSS</h4>
-    <p>Oppstår utelukkende på klientsiden. Her henter JavaScript i nettleseren data fra Document Object Model (DOM), for eksempel fra URL-en, og skriver det ut i siden på en usikker måte.</p>
+    <header class="content-header">
+        <h1>Cross-Site Scripting (XSS)</h1>
+        <p class="lead">CWE-79: En av de vanligste sårbarhetene i moderne webapplikasjoner.</p>
+    </header>
 
-<h2>Risiko og konsekvenser</h2>
-  <h3>En vellykket XSS-utnyttelse kan ha alvorlige følger:</h3>
-  <p>Sesjonskapring:** Angripere kan stjele brukernes sesjonstokener (cookies) og overta kontoene deres.</p>
-<p><strong>Trojansk funksjonalitet:</strong> Angripere kan injisere falske innloggingsskjemaer for å stjele brukernavn og passord.</p>
-<p><strong>Virtuell defacement:</strong> Endring av innholdet på nettsiden for å spre feilinformasjon.</p>
-<p><strong>Indusere handlinger:</strong> Tvinge brukere til å utføre handlinger de ikke hadde til hensikt, som å overføre penger eller endre profilinnstillinger.</p>
+    <section class="intro">
+        <p>XSS oppstår når en applikasjon tar brukerstyrt data og sender dem til en nettleser uten tilstrekkelig validering eller koding. Dette gjør at en angriper kan kjøre vilkårlig <strong>JavaScript</strong> i offerets nettleser.</p>
+        <p>Dette er en underkategori av <em>Command Injections</em> (CWE-74).</p>
+        
+        <div class="image-container">
+            <img id="myImg" src="Images/CWE79.png" alt="Illustrasjon av XSS angrep" style="width:100%; max-width:400px; border-radius: 8px; cursor: pointer;">
+            <!-- The Modal -->
+              <div id="myModal" class="modal">
+              <span class="close">&times;</span>
+              <img class="modal-content" id="img01">
+               <div id="caption"></div>
+              </div>
+          </div>
+    </section>
 
-<h2>Hvordan sikre websidene dine</h2>
-</p>For å eliminere XSS-sårbarheter bør du følge en trefoldig tilnærming:</p>
+    <section class="variants">
+        <h2>Varianter av XSS</h2>
+        <div class="card-grid">
+            <div class="card">
+                <h3>Reflektert XSS (First-order)</h3>
+                <p>Scriptet blir "reflektert" direkte tilbake i svaret fra serveren, ofte via en URL-parameter eller feilmelding.</p>
+            </div>
+            <div class="card">
+                <h3>Lagret XSS (Second-order)</h3>
+                <p>Data lagres permanent på serveren (f.eks. i en database). Dette er den farligste typen da den rammer alle som besøker siden.</p>
+            </div>
+            <div class="card">
+                <h3>DOM-basert XSS</h3>
+                <p>Sårbarheten ligger i klientens JavaScript-kode som behandler data fra DOM-en (f.eks. URL-hash) på en usikker måte.</p>
+            </div>
+        </div>
+    </section>
 
-<h2>1. Validering av input</h2>
-  <h3>All data som mottas fra brukere bør sjekkes mot strenge regler:</h3>
-    <h4>Bruk en **whitelist** for tillatte tegn.</h4>
-    <h4>Begrens **lengden** på inputfelt.</h4>
-    <h4>Unngå å tillate HTML-tags med mindre det er absolutt nødvendig, og i så fall, bruk et bibliotek for å rense dem.</h4>
-      <h4>For spesifikke felt, som e-post eller telefonnummer, bruk innebygde valideringsfunksjoner eller regulære uttrykk.</h4>
-      <p>Eksempel: For et e-postfelt kan du bruke en regex som `^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$` for å sikre at inputen er i riktig format.</p>
-      <p>For et telefonnummer kan du bruke en regex som `^\+?[0-9]{10,15}$` for å sikre at det kun inneholder tall og eventuelt et pluss-tegn i starten.</p>
-        <p>For et navn kan du bruke en regex som `^[a-zA-Z\s'-]{1,50}$` for å tillate bokstaver, mellomrom, apostrof og bindestrek, og begrense lengden til 50 tegn.</p>
-        <p>For et passord kan du bruke en regex som `^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$` for å sikre at det inneholder minst 8 tegn, inkludert både bokstaver og tall.</p>
-          <p>For et dato-felt kan du bruke en regex som `^\d{4}-\d{2}-\d{2}$` for å sikre at det følger formatet YYYY-MM-DD.</p>
-            <p>For et URL-felt kan du bruke en regex som `^(https?|ftp)://[^\s/$.?#].[^\s]*$` for å sikre at det er en gyldig URL.</p>
-  <p>Eksempler på inputvalideringsteknikker:</p>  
-  <p>Sjekk at inputen ikke inneholder skadelige tegn som `<`, `>`, `"`, `'`, `&`, `/`, `\`, etc. </p>
-<p>Valider at dataene samsvarer med forventet format (f.eks. tall, dato eller e-post) ved hjelp av regulære uttrykk.</p>
+    <section class="security-measures">
+        <h2>Slik sikrer du nettsidene dine</h2>
+        <p>Følg den trefoldige tilnærmingen:</p>
 
-**2. Koding av output (Viktigst)**
-Dette er det mest kritiske forsvaret. Før data skrives ut i HTML-siden, må potensielt farlige tegn **HTML-kodes** slik at nettleseren tolker dem som tekst og ikke som kode:
-*   `<` blir `&lt;`
-*   `>` blir `&gt;`
-*   `"` blir `&quot;`
-*   `'` blir `&#39;`
-*   `&` blir `&amp;`.
+        <div class="step">
+            <h3>1. Validering av input</h3>
+            <ul>
+                <li>Bruk <strong>whitelist</strong> for tillatte tegn.</li>
+                <li>Begrens lengden på inputfelt.</li>
+                <li>Bruk regulære uttrykk (Regex) for spesifikke felt.</li>
+            </ul>
+            <details>
+                <summary>Se eksempler på Regex</summary>
+                <code>E-post: ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$</code><br>
+                <code>URL: ^(https?|ftp)://[^\s/$.?#].[^\s]*$</code>
+            </details>
+        </div>
 
-For DOM-basert XSS må du sørge for at klientside-script også koder data før de settes inn i siden, for eksempel ved å bruke `textContent` i stedet for `innerHTML`.
+        <div class="step highlight">
+            <h3>2. Koding av output (Viktigst!)</h3>
+            <p>Konverter spesialtegn til HTML-entiteter før de skrives til skjerm:</p>
+            <table class="encoding-table">
+                <tr><th>Tegn</th><th>HTML-kode</th></tr>
+                <tr><td>&lt;</td><td><code>&amp;lt;</code></td></tr>
+                <tr><td>&gt;</td><td><code>&amp;gt;</code></td></tr>
+                <tr><td>&amp;</td><td><code>&amp;amp;</code></td></tr>
+            </table>
+        </div>
 
-**3. Eliminer farlige innsettingspunkter**
-Unngå å sette brukerstyrt data direkte inn i eksisterende JavaScript-blokker eller i attributter som forventer URL-er (f.eks. `href`), da disse er svært vanskelige å sikre. Hvis du må tillate begrenset HTML-formatering (f.eks. i en blogg), bør du bruke et anerkjent rammeverk som **OWASP AntiSamy** for å rense koden.
-
-**Anbefaling:** Kombiner alltid inputvalidering med output-koding for å ha flere lag med forsvar dersom ett av dem skulle svikte.</p>
-</p>
-
-
-  <h3>Cross-site Scripting (XSS)</h3>
-
-  <p>
-    Cross-Site Scripting (XSS) er en av de mest utbredte sårbarhetene i webapplikasjoner.
-    Sårbarheten oppstår når brukerstyrte data sendes til nettleseren uten tilstrekkelig validering
-    eller koding. Dette kan gjøre det mulig for en angriper å kjøre vilkårlig JavaScript i
-    offerets nettleser.
-  </p>
-
-  <p>
-    XSS er en underkategori av Command Injections og er klassifisert som CWE‑79,
-    som igjen er et "child" av CWE‑74.
-  </p>
-
-  <!-- Thumbnail image -->
-  <img
-    id="myImg"
-    src="Images/CWE79.png"
-    alt="Illustrasjon av XSS-angrep"
-    style="width:100%; max-width:300px"
-  />
-
-  <!-- Modal (image zoom) -->
-  <div id="myModal" class="modal">
-    <span class="close">&times;</span>
-    <img class="modal-content" id="img01" />
-    <div id="caption"></div>
-  </div>
-
-
-  <!-- TYPES OF XSS -->
-  <h2>Typer XSS</h2>
-
-  <h4>Reflektert XSS (First-order)</h4>
-  <p>
-    Skadelig script blir reflektert direkte i serverresponsen, ofte gjennom
-    URL-parametere eller skjemaer. Vanlig i feilmeldinger eller søkefunksjoner.
-  </p>
-
-  <h4>Lagret XSS (Second-order)</h4>
-  <p>
-    Brukerdata lagres i databasen og vises senere til andre brukere uten riktig
-    rensing. Dette gjør denne varianten mer alvorlig da alle besøkende kan rammes.
-  </p>
-
-  <h4>DOM-basert XSS</h4>
-  <p>
-    Oppstår kun på klientsiden når JavaScript leser data direkte fra DOM-en
-    (f.eks. URL-fragmenter) og setter dem inn i siden på en usikker måte.
-  </p>
-
-
-   <h2>Risiko og konsekvenser</h2>
-
-  <p><strong>Sesjonskapring:</strong> Angriper kan stjele sesjonscookies og overta brukerens konto.</p>
-  <p><strong>Trojansk funksjonalitet:</strong> Angriper kan injisere falske innloggingsskjemaer.</p>
-  <p><strong>Visuell manipulering (defacement):</strong> Endring av innholdet på nettsiden.</p>
-  <p><strong>Uønskede handlinger:</strong> Angriper kan tvinge brukeren til å utføre handlinger som
-     pengeoverføringer eller endring av innstillinger.</p>
-
-
-  <!-- DEFENCE -->
-  <h2>Beskyttelse mot XSS</h2>
-
-  <h3>1. Validering av input</h3>
-  <p>Bare tillat data som følger forventede formater:</p>
-
-  <ul>
-    <li>Bruk whitelist for tillatte tegn.</li>
-    <li>Begrens lengden på input.</li>
-    <li>Ikke tillat HTML med mindre du bruker et saneringsbibliotek som AntiSamy.</li>
-  </ul>
-
-  <p>Eksempler på regex-basert validering:</p>
-  <ul>
-    <li>E‑post: <code>^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$</code></li>
-    <li>Telefonnummer: <code>^\+?[0-9]{10,15}$</code></li>
-    <li>Navn: <code>^[a-zA-Z\s'-]{1,50}$</code></li>
-    <li>Passord: <code>^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$</code></li>
-    <li>Dato: <code>^\d{4}-\d{2}-\d{2}$</code></li>
-    <li>URL: <code>^(https?|ftp)://[^\s/$.?#].[^\s]*$</code></li>
-  </ul>
-
-
-  <h3>2. Koding av output (viktigst)</h3>
-  <p>
-    Før data settes inn i HTML må potensielt farlige tegn kodes:
-  </p>
-
-  <ul>
-    <li><code>&lt;</code> → <code>&amp;lt;</code></li>
-    <li><code>&gt;</code> → <code>&amp;gt;</code></li>
-    <li><code>"</code> → <code>&amp;quot;</code></li>
-    <li><code>'</code> → <code>&amp;#39;</code></li>
-    <li><code>&amp;</code> → <code>&amp;amp;</code></li>
-  </ul>
-
-  <p>
-    I JavaScript: bruk alltid <code>textContent</code> i stedet for <code>innerHTML</code>.
-  </p>
-
-
-  <h3>3. Eliminer farlige innsettingspunkter</h3>
-  <p>
-    Ikke sett brukerstyrte data direkte inn i:
-  </p>
-
-  <ul>
-    <li>JavaScript-blokker</li>
-    <li>HTML-attributter som forventer URL (href, src)</li>
-    <li>Event‑håndterere (onclick, onmouseover, ...)</li>
-  </ul>
-
-  <p><strong>Anbefaling:</strong> Kombiner input‑validering og output‑koding for best mulig beskyttelse.</p>
+        <div class="step">
+            <h3>3. Eliminer farlige innsettingspunkter</h3>
+            <p>Bruk <code>textContent</code> i stedet for <code>innerHTML</code> når du skriver til DOM-en med JavaScript.</p>
+        </div>
+    </section>
+</div>
 
 </div>
 </main>

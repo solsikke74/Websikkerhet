@@ -1,0 +1,264 @@
+/* Fargepalett: Gentle Sea Breeze
+  #022b3a (Mørk blå - Overskrifter/Nav)
+  #1f7a8c (Turkis - Tekst/Highlight)
+  #bfdbf7 (Lys blå - Bakgrunn)
+  #e1e5f2 (Gråblå - Kort/Detaljer)
+  #ffffff (Hvit - Innholdskontainer)
+*/
+
+*, *::before, *::after { 
+    box-sizing: border-box;
+}
+
+/* --- Grunnleggende oppsett --- */
+
+body {
+    background-color: #bfdbf7;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #1f7a8c;
+}
+
+h1 {
+    color: #022b3a;
+    margin: 20px 0 24px 10px;
+}
+
+h2, h3, h4 {
+    color: #022b3a;
+    margin-left: 10px;
+}
+
+p {
+    color: #1f7a8c;
+    line-height: 1.6;
+    margin-bottom: 16px;
+    margin-left: 10px;
+}
+
+a:link, a:visited {
+    color: #022b3a;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+/* --- Navigasjon og Tabs --- */
+
+ul.topnav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; 
+    background-color: #022b3a;
+}
+
+ul.topnav li {
+    float: left;
+}
+
+ul.topnav li a {
+    display: block;
+    color: #e1e5f2;
+    text-align: center;
+    padding: 20px 40px;
+    border: #bfdbf7 solid 1px; 
+    border-radius: 6px;   
+    margin: 15px;      
+}
+
+ul.topnav li a:hover:not(.active) {
+    background-color: #1f7a8c;
+}
+
+.tab {
+    display: flex;
+    overflow: hidden;
+    border: 1px solid #1f7a8c;
+    background-color: #022b3a;
+    color: #e1e5f2;
+}
+
+.tab button {
+    background-color: inherit;
+    color: inherit; 
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 20px;
+}
+
+.tab button:hover {
+    background-color: #1f7a8c;
+}
+
+.tab button.active {
+    background-color: #1f7a8c;
+    font-weight: bold;
+}
+
+/* --- Tab Content og XSS Spesifikk styling --- */
+
+.tabcontent {
+    display: none;
+    padding: 20px;
+    border: 1px solid #1f7a8c;
+    border-top: none;
+    background-color: #ffffff; /* Gir hvit bakgrunn inne i arkfanen */
+}
+
+/* Layout for XSS-kortene */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin: 20px 10px;
+}
+
+.card {
+    background-color: #e1e5f2;
+    border: 1px solid #bfdbf7;
+    border-radius: 8px;
+    padding: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(2, 43, 58, 0.15);
+    border-color: #1f7a8c;
+}
+
+.card h4 {
+    margin-left: 0;
+    margin-top: 0;
+    color: #022b3a;
+}
+
+/* Sikkerhetstiltak (Steps) */
+.step {
+    background-color: #ffffff;
+    border-left: 5px solid #bfdbf7;
+    margin: 20px 10px;
+    padding: 15px 20px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+}
+
+.step.highlight {
+    border-left-color: #1f7a8c;
+    background-color: #f8fafd;
+}
+
+/* Tabell for koding */
+.encoding-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+    background-color: #ffffff;
+}
+
+.encoding-table th {
+    background-color: #022b3a;
+    color: #ffffff;
+    padding: 12px;
+    text-align: left;
+}
+
+.encoding-table td {
+    padding: 10px;
+    border-bottom: 1px solid #e1e5f2;
+}
+
+/* Regex Detaljer */
+details {
+    background-color: #e1e5f2;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+details code {
+    display: block;
+    background: white;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 4px;
+    border: 1px solid #bfdbf7;
+    overflow-x: auto;
+}
+
+/* --- Bilder og Modal --- */
+
+img {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}
+
+#myImg {
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#myImg:hover { opacity: 0.7; }
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.9);
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    animation: zoom 0.6s;
+}
+
+@keyframes zoom {
+    from {transform:scale(0)} 
+    to {transform:scale(1)}
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* --- Footer --- */
+
+footer {
+    width: min(600px, 90%); 
+    background-color: #022b3a;  
+    color: #e1e5f2;
+    min-height: 80px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding: 14px;
+    align-items: center;
+    border-radius: 10px;
+    margin: 24px auto;
+}
+
+/* --- Responsivitet --- */
+
+@media screen and (max-width: 600px) {
+    ul.topnav li { float: none; }
+    .tab { flex-direction: column; }
+    .modal-content { width: 100%; }
+}

@@ -1,41 +1,51 @@
 function openCity(evt, cityName) {
-  // Declare all variables
   var i, tabcontent, tablinks;
 
-  // Get all elements with class="tabcontent" and hide them
+  // Skjul alle faner
   tabcontent = document.getElementsByClassName("tabcontent");
   for (i = 0; i < tabcontent.length; i++) {
     tabcontent[i].style.display = "none";
   }
 
-  // Get all elements with class="tablinks" and remove the class "active"
+  // Fjern "active" fra alle knapper
   tablinks = document.getElementsByClassName("tablinks");
   for (i = 0; i < tablinks.length; i++) {
     tablinks[i].className = tablinks[i].className.replace(" active", "");
   }
 
-  // Show the current tab, and add an "active" class to the button that opened the tab
-  document.getElementById(cityName).style.display = "block";
+  // Vis valgt fane og marker knappen som aktiv
+  var activeTab = document.getElementById(cityName);
+  activeTab.style.display = "block";
   evt.currentTarget.className += " active";
 }
 
-// Get the modal
-var modal = document.getElementById("myModal");
+// MODAL LOGIKK - Pakket inn i en funksjon eller sjekk
+document.addEventListener("DOMContentLoaded", function() {
+  var modal = document.getElementById("myModal");
+  var img = document.getElementById("myImg");
+  var modalImg = document.getElementById("img01");
+  var captionText = document.getElementById("caption");
 
-// Get the image and insert it inside the modal - use its "alt" text as a caption
-var img = document.getElementById("myImg");
-var modalImg = document.getElementById("img01");
-var captionText = document.getElementById("caption");
-img.onclick = function(){
-  modal.style.display = "block";
-  modalImg.src = this.src;
-  captionText.innerHTML = this.alt;
-}
+  // Sjekk at bildet faktisk finnes før vi legger til klikk-funksjon
+  if (img) {
+    img.onclick = function() {
+      modal.style.display = "block";
+      modalImg.src = this.src;
+      captionText.innerHTML = this.alt;
+    }
+  }
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+  var span = document.getElementsByClassName("close")[0];
+  if (span) {
+    span.onclick = function() { 
+      modal.style.display = "none";
+    }
+  }
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() { 
-  modal.style.display = "none";
-}
+  // Lukk modal hvis man klikker utenfor bildet
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+});
