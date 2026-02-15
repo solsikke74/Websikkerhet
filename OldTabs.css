@@ -1,0 +1,235 @@
+ /*Fargekoder
+ color: #022b3a;
+ color: #1f7a8c;
+ color: #bfdbf7;
+ color: #e1e5f2;
+ color: #ffffff; 
+ Gentle Sea Breeze
+ https://coolors.co/palette/022b3a-1f7a8c-bfdbf7-e1e5f2-ffffff
+  */
+
+*, *::before, *::after 
+{ 
+  box-sizing: border-box;
+}
+/* a CSS property value that forces an element's specified width and height to include its 
+content, padding, and border. It prevents elements from expanding unexpectedly when padding or borders are added, 
+making layout calculations much easier and more intuitive compared to the default content-box. */
+
+h1 {
+    color: #022b3a;
+    margin-top: 20px;
+    margin-bottom: 24px;
+    margin-left: 10px;
+}
+p {
+    color: #1f7a8c;
+    line-height: 1.6;
+    margin-bottom: 16px;
+    margin-left: 10px;
+}
+
+a:link {
+  color: #022b3a;
+  background-color: transparent;
+}
+
+a:visited {
+  color: #022b3a;
+  background-color: transparent;
+}
+
+body {
+    background-color:#bfdbf7;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+ ul.topnav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; 
+  background-color: #022b3a;
+}
+
+ul.topnav li{
+  float: left;
+  }
+
+ul.topnav li a {
+  display: block;
+  color: #e1e5f2;
+  text-align: center;
+  padding: 20px 40px;
+  text-decoration: none;
+  border: #bfdbf7 solid 1px; 
+  border-radius: 6px;   /* valgfritt – penere */ 
+  margin: 30px;      
+}
+
+ul.topnav li a:hover:not(.active) {background-color: #1f7a8c;}
+
+
+@media screen and (max-width: 600px) {
+    ul.topnav li.right,
+    ul.topnav li {float: none;}
+}
+
+ main{
+    background-color: #bfdbf7;
+    color: #1f7a8c;
+ }
+
+ img {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+ }
+
+/* Style the tab */
+.tab {
+  display: flex;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #022b3a;
+  color: #e1e5f2;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: inherit;
+  color: inherit; 
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 20px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #809ab2;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #1f7a8c;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+#myImg {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg:hover {opacity: 0.7;}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (image) */
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
+
+/* Caption of Modal Image */
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+}
+
+/* Add Animation */
+.modal-content, #caption {  
+  -webkit-animation-name: zoom;
+  -webkit-animation-duration: 0.6s;
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+  from {-webkit-transform:scale(0)} 
+  to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+  from {transform:scale(0)} 
+  to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+  .modal-content {
+    width: 100%;
+  }
+}
+
+
+.footer a { 
+  color: #e1e5f2;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+  footer{
+  width: min(600px, 90%); 
+  background-color: #022b3a;  
+  color: #e1e5f2;
+  min-height: 80px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 14px;
+  align-items: center;
+  border-radius: 10px;
+  margin:24px auto;
+ }
+

