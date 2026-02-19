@@ -54,7 +54,7 @@
       <div class="card-grid">
         <div class="card">
           <h3>1. In-band (Classic)</h3>
-            <p>Dette er den vanligste og mest direkte formen for angrep, der angriperen bruker <strong>samme kommunikasjonskanal til både å utføre angrepet og hente ut resultatene</strong> </p>
+            <p>Dette er den vanligste og mest direkte formen for angrep, der angriperen bruker <strong>samme kommunikasjonskanal/applikasjon til både å utføre angrepet og hente ut resultatene</strong> </p>
             <p><strong>UNION-basert:</strong> Bruker <code>UNION</code>-operatøren for å kombinere resultater fra den originale spørringen med data fra andre tabeller. Dette er ofte den raskeste metoden for datatrekking</p>
             <p><strong>For eksempel</strong> be om brukernavn og passord til brukeren av applikasjonen. </p>
             <p><strong>Feilbasert (Error-based):</strong> Utnytter detaljerte feilmeldinger fra databasen (f.eks. ODBC-feil) for å hente ut informasjon om databasens struktur og innhold </p>  
@@ -69,6 +69,7 @@
         <div class="card">
           <h3>Out-of-band</h3>
             <p>Den som utfører angrepet er ute av stand til å bruke samme kanal som angrepet utføres i. </p>
+            <p>Bruker for eksempel dns eller http requesgt for å gi data til en angriper. </p>
         </div>
       </div>
   </section>
