@@ -40,7 +40,7 @@ p {
 a:link, a:visited {
     color: #022b3a;
     background-color: transparent;
-    text-decoration: none;
+    text-decoration: underline;
 }
 
 /* --- Navigasjon og Tabs --- */

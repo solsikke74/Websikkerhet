@@ -32,6 +32,7 @@ p {
 a:link {
   color: #022b3a;
   background-color: transparent;
+  text-decoration: underline;
 }
 
 a:visited {
