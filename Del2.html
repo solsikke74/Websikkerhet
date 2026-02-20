@@ -34,9 +34,19 @@
 
 <!-- Tab content -->
 <div id="Command" class="tabcontent">
-  <h3>Command injections</h3>
-  <p>Korrupte data legges inn i en applikasjon, som fører til at programmet som mottar dataene, tolker de som en kommando.</p>
+        <h2>Command Injections</h2>
+        <p><a href="https://cwe.mitre.org/data/definitions/74.html">CWE-74</a>: En bred kategori av sårbarheter der angriperen kan injisere og utføre skadelig kode.</p>
+    </header>
+  <h2>Command injections</h2>
+  <p>Data blir lagt inn i en applikasjon, som tolker dette som en kommando og kjører kode.</p>
   <p>For eksempel hvis applikasjonen jobber opp mot SQL, shell (cmd.exe, bash), LDAP, XPath og andre.</p>
+  <h3>Løsning på disse problemene</h3>
+    <ul>
+      <li>Validering av input med å "whiteliste" gyldige tegn og verdier</li>
+      <li>Koding av output, slik at spesialtegn ikke tolkes som kode</li>
+      <li>Eliminere farlige innsettingspunkter, for eksempel ved å bruke textContent i stedet for innerHTML i JavaScript</li>     
+    </ul>
+  <h3>CWE</h3>
   <p>CWE har kategorisert injections med nummer 74. </p>
   <a href="https://cwe.mitre.org/data/definitions/74.html">CWE-74</a>
   <p>På nettsiden til cwe kan du lengst nede se kodeeksempler og hva som er feil med koden. </p>
@@ -49,7 +59,18 @@
                <div id="caption"></div>
               </div>
           </div>
-</div>
+   <h4>Teori</h4>
+   <ul>
+    <li>Book: D. Stuttard and M. Pinto The Web Application Hacker’s Handbook, 2nd Edition, Chapters 9, 10, 12</li>
+    <li><a href="https://portswigger.net/web-security/sql-injection">SQL Injection Labs</a> from PortSwigger</li>
+    <li><a href="https://www.youtube.com/playlist?list=PLuyTk2_mYISLaZC4fVqDuW_hOk0dd5rlf">YouTube playlist om SQL-injeksjoner</a></li>
+    <li><a href="https://www.youtube.com/playlist?list=PLuyTk2_mYISK9ywsFZZOT1LuO3Eb7Wq5q">YouTube playlist om Command-injeksjoner</a></li>
+    <li><a href="https://www.youtube.com/playlist?list=PLuyTk2_mYISL2DdD_m1ELEjpiPKxV98MO">YouTube playlist om Directory Traversal</a></li>
+    <li><a href="https://www.invicti.com/blog/web-security/sql-injection-cheat-sheet/">Invicti SQL Injection Cheat Sheet</a></li>
+    <li><a href="Xpath-WP.pdf">Xpath injection tutorial</a></p>
+    <li><a href="https://web.dev/articles/csp">Content Security Policy (CSP)</a></p>
+    </ul>      
+  </div>
 
 <div id="SQL" class="tabcontent">
   <h3>SQL injections</h3>
