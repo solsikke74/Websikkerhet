@@ -1,46 +1,51 @@
-// 1. Tab-funksjonen (Denne må ligge utenfor for å kunne kalles fra HTML)
 function openCity(evt, cityName) {
   var i, tabcontent, tablinks;
+
+  // Skjul alle faner
   tabcontent = document.getElementsByClassName("tabcontent");
   for (i = 0; i < tabcontent.length; i++) {
     tabcontent[i].style.display = "none";
   }
+
+  // Fjern "active" fra alle knapper
   tablinks = document.getElementsByClassName("tablinks");
   for (i = 0; i < tablinks.length; i++) {
     tablinks[i].className = tablinks[i].className.replace(" active", "");
   }
-  document.getElementById(cityName).style.display = "block";
+
+  // Vis valgt fane og marker knappen som aktiv
+  var activeTab = document.getElementById(cityName);
+  activeTab.style.display = "block";
   evt.currentTarget.className += " active";
 }
 
-// 2. Modal-logikken (Vi venter til hele siden er lastet)
+// MODAL LOGIKK - Pakket inn i en funksjon eller sjekk
 document.addEventListener("DOMContentLoaded", function() {
-    
-    var modal = document.getElementById("myModal");
-    var img = document.getElementById("myImg");
-    var modalImg = document.getElementById("img01");
-    var captionText = document.getElementById("caption");
+  var modal = document.getElementById("myModal");
+  var img = document.getElementById("myImg");
+  var modalImg = document.getElementById("img01");
+  var captionText = document.getElementById("caption");
 
-    // Sjekk om elementene faktisk finnes før vi legger til funksjoner
-    if (img && modal) {
-        img.onclick = function() {
-            modal.style.display = "block";
-            modalImg.src = this.src;
-            captionText.innerHTML = this.alt;
-        }
+  // Sjekk at bildet faktisk finnes før vi legger til klikk-funksjon
+  if (img) {
+    img.onclick = function() {
+      modal.style.display = "block";
+      modalImg.src = this.src;
+      captionText.innerHTML = this.alt;
     }
+  }
 
-    var span = document.getElementsByClassName("close")[0];
-    if (span) {
-        span.onclick = function() { 
-            modal.style.display = "none";
-        }
+  var span = document.getElementsByClassName("close")[0];
+  if (span) {
+    span.onclick = function() { 
+      modal.style.display = "none";
     }
+  }
 
-    // Lukker modalen hvis man klikker på det svarte området utenfor bildet
-    window.addEventListener("click", function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    });
+  // Lukk modal hvis man klikker utenfor bildet
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
 });

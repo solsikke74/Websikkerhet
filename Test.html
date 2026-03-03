@@ -46,15 +46,21 @@
       <li>Koding av output, slik at spesialtegn ikke tolkes som kode</li>
       <li>Eliminere farlige innsettingspunkter, for eksempel ved å bruke textContent i stedet for innerHTML i JavaScript</li>     
     </ul>
+  <h3>CWE</h3>
+  <p>CWE har kategorisert injections med nummer 74. </p>
+  <a href="https://cwe.mitre.org/data/definitions/74.html">CWE-74</a>
+  <p>På nettsiden til cwe kan du lengst nede se kodeeksempler og hva som er feil med koden. </p>
   <div class="image-container">
-            <img id="myImg" src="Images/CWE74.png" alt="Illustrasjon av command angrep" style="width:100%; max-width:400px; border-radius: 8px; cursor: pointer;">
+         <img class="modal-trigger" src="Images/CWE74.png" alt="Illustrasjon av command angrep" style="width:100%; max-width:400px; border-radius: 8px; cursor: pointer;">
             <!-- The Modal -->
-              <div id="myModal" class="modal">
-              <span class="close">&times;</span>
-              <img class="modal-content" id="img01">
-               <div id="caption"></div>
+              <div id="universalModal" class="modal">
+                <span class="close">&times;</span>
+                <img class="modal-content" id="modalImg">
+                <div id="modalCaption"></div>
               </div> 
           </div>
+   </div>
+
    <h4>Teori</h4>
    <ul>
     <li>Book: D. Stuttard and M. Pinto The Web Application Hacker’s Handbook, 2nd Edition, Chapters 9, 10, 12</li>
