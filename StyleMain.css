@@ -16,11 +16,24 @@
 content, padding, and border. It prevents elements from expanding unexpectedly when padding or borders are added, 
 making layout calculations much easier and more intuitive compared to the default content-box. */
 
+
 h1 {
-    color: #022b3a;
-    margin-top: 20px;
-    margin-bottom: 24px;
-    margin-left: 10px;
+  font-size: 2.5rem;
+  line-height: 1.2;
+  margin-bottom: 0.5em;
+}
+
+h2 {
+  font-size: 2rem;
+  line-height: 1.3;
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+h3 {
+  font-size: 1.75rem;
+  line-height: 1.4;
+  margin-top: 1.2em;
 }
 p {
     color: #1f7a8c;
