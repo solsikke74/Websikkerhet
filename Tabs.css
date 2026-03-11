@@ -71,8 +71,15 @@ ul.topnav li a:hover:not(.active) {
     background-color: #1f7a8c;
 }
 
+ul{
+    margin: 0;
+    padding: 0;
+}
+
 li{
-    padding: 5px;
+    padding: 10px;
+    margin: 0;
+    list-style-type: none;
 }
 
 .tab {
