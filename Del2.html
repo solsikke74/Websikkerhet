@@ -26,6 +26,7 @@
 
 <!-- Tab links -->
 <div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'Diverse')">Diverse</button>
   <button class="tablinks" onclick="openCity(event, 'Command')">Command</button>
   <button class="tablinks" onclick="openCity(event, 'SQL')">SQL</button>
   <button class="tablinks" onclick="openCity(event, 'XPath')">XPath</button>
@@ -33,6 +34,30 @@
 </div>
 
 <!-- Tab content -->
+<div id="Diverse" class="tabcontent">
+  <h3>Lesestoff</h3>
+  <ul>
+    <li>Bok: D. Stuttard and M. Pinto The Web Application Hacker’s Handbook, 2nd Edition, Chapters 9, 10, 12</li>
+    <li><a href="https://www.youtube.com/playlist?list=PLuyTk2_mYISLaZC4fVqDuW_hOk0dd5rlf" Target="_blank" alt="Link til SQL injections lab fra PortSwigger">SQL Injection LabsLinks</a> to an external site. from PortSwigger</li>
+    <li><a href="https://www.youtube.com/playlist?list=PLuyTk2_mYISK9ywsFZZOT1LuO3Eb7Wq5q" Target="_blank" alt="Link til Command injections lab fra PortSwigger">Command Injection LabsLinks</a> to an external site. from PortSwigger</li>
+    <li><a href="https://www.youtube.com/playlist?list=PLuyTk2_mYISL2DdD_m1ELEjpiPKxV98MO" Target="_blank" alt="Link til Directory Traversal lab fra PortSwigger">Directory Traversal LabsLinks</a> to an external site. from PortSwigger</li>
+    <li><a href="https://www.invicti.com/blog/web-security/sql-injection-cheat-sheet" Target="_blank" alt="SQL injection cheat sheet">SQL injection cheat sheetLinks</a> to an external site.</li>
+    <li><a href="https://www.invicti.com/blog/web-security/sql-injection-cheat-sheet" Target="_blank" alt="Link til Command injections lab fra PortSwigger">SQL injection</a> cheat sheet</li>
+    <li><a href="https://www.invicti.com/blog/web-security/sql-injection-cheat-sheet" Target="_blank" alt="Link til Command injections lab fra PortSwigger">SQL injection</a> tutorial</li>
+    <li><a href="https://web.dev/articles/csp" Target="_blank" alt="Content Security Policy">Content Security Policy</a></li>
+    <li><a href="https://pentestmonkey.net/cheat-sheet/sql-injection/mysql-sql-injection-cheat-sheet" Target="_blank" alt="Link til SQL injection cheat sheet">MySQL SQL Injection Cheat Sheet</a></li>
+    </ul>
+   <div class="image-container">
+            <img id="myImg" src="Images/DagensKompleksitet.png" alt="Illustrasjon av dagens kompleksitet" style="width:100%; max-width:400px; border-radius: 8px; cursor: pointer;">
+            <!-- The Modal -->
+              <div id="myModal" class="modal">
+              <span class="close">&times;</span>
+              <img class="modal-content" id="img01">
+               <div id="caption"></div>
+              </div> 
+          </div>
+
+</div>
 <div id="Command" class="tabcontent">
         <h2>Command Injections</h2>
         <p><a href="https://cwe.mitre.org/data/definitions/74.html">CWE-74</a>: En bred kategori av sårbarheter der angriperen kan injisere og utføre skadelig kode.</p>

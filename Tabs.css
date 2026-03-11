@@ -71,6 +71,10 @@ ul.topnav li a:hover:not(.active) {
     background-color: #1f7a8c;
 }
 
+li{
+    padding: 5px;
+}
+
 .tab {
     display: flex;
     overflow: hidden;
