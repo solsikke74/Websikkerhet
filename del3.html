@@ -26,6 +26,11 @@
 <h1>Del 3: Cookies og session management</h1>
 
 <h3>Cookie security and Same Origin Policy (SOP)</h3>
+<button onclick="myFunction('Demo1')" class="w3-btn w3-block w3-black w3-left-align">Open Section 1</button>
+<div id="Demo1" class="w3-container w3-hide">
+  <h4>Section 1</h4>
+  <p>Some text..</p>
+</div>
 <h2>SOP forklart</h2>
 <p>En nettleser tillater at script i side 1 kan få tilgang til data i side 2, så lenge de tilhører samme opprinnelse.</p>
 <p>Denne opprinnelsen er en kombinasjon av URI skjema, hostens navn og portnummer. </p>
@@ -34,7 +39,8 @@
 <p>Cookies har ikke innebygd sikkerhet</p>
 <p>Dette er den mest sikre løsningen: Set-Cookie: __Host-SessionID=3h93…; Path=/; Secure; HttpOnly; SameSite=Strict</p>
 
-<p>In the second part of Module 3, we discuss the importance of web session management. We recall the original HTTP authentication with limitations arising from its stateless nature. Session management addresses this problem by creating a session — a series of related interactions between a user and the web application or system during a specific period. Session management is the process of maintaining and controlling user sessions. It involves assigning a unique session identifier/token to each user, which is stored on the server side and used to retrieve relevant session data. The key components of session management are
+<h3>Web session management</h3>
+<p>In the s HTTP authentication with limitations arising from its stateless nature. Session management addresses this problem by creating a session — a series of related interactions between a user and the web application or system during a specific period. Session management is the process of maintaining and controlling user sessions. It involves assigning a unique session identifier/token to each user, which is stored on the server side and used to retrieve relevant session data. The key components of session management are
 
 session creation - when a user initiates a session by accessing a web application, a unique session ID is generated for that user; this ID identifies and associates the user’s interactions with the session
 session tracking - server keeps track of active sessions by associating each session ID with relevant user data
@@ -79,6 +85,6 @@ attacker injects Set-Cookie parameter into a server HTTP response header</p>
        <a href="index.html">Hjem</a>
   </div>
 </footer>
-
+<script src="../Accordion/Accordion.js"></script>
 </body>
 </html>
